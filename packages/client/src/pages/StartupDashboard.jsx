@@ -10,7 +10,7 @@ export default function StartupDashboard({ user, onLogout }) {
         <main className="flex-1 md:ml-64 p-md md:p-lg max-w-[1280px] mx-auto w-full">
           <div className="mb-lg">
             <h1 className="text-headline-lg font-headline-lg text-primary">Startup Dashboard</h1>
-            <p className="text-body-md font-body-md text-on-surface-variant">Welcome, {user?.name} · {user?.company}</p>
+            <p className="text-body-md font-body-md text-on-surface-variant">Welcome, {user?.name || 'Rohan Mehta'} · {user?.company || 'TrackEasy Solutions'}</p>
           </div>
           {/* Passport Score Card */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-lg">
@@ -34,8 +34,38 @@ export default function StartupDashboard({ user, onLogout }) {
                 <span className="material-symbols-outlined text-warning fill-icon">pending_actions</span>
               </div>
               <p className="text-display-lg font-display-lg text-on-surface leading-none">1</p>
-              <p className="text-label-sm font-label-sm text-on-surface-variant">Active Pilot</p>
+              <p className="text-label-sm font-label-sm text-on-surface-variant">Active Pilot Sandbox</p>
             </div>
+          </div>
+
+          {/* Tier 2 Quick Workflows */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+            <Link to="/milestones" className="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">Feature 2.1</span>
+                <h3 className="font-bold text-label-md text-on-surface mt-2">Submit Milestone Deliverables</h3>
+                <p className="text-[12px] text-on-surface-variant mt-1">Upload technical DPRs & trigger escrow milestone payments.</p>
+              </div>
+              <span className="text-primary font-bold text-[12px] mt-3">Open Milestones →</span>
+            </Link>
+
+            <Link to="/ip-clauses" className="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold text-secondary bg-secondary/10 px-2 py-0.5 rounded">Feature 2.4</span>
+                <h3 className="font-bold text-label-md text-on-surface mt-2">Review IP & Data Clauses</h3>
+                <p className="text-[12px] text-on-surface-variant mt-1">Verify background IP ownership and state data sovereignty terms.</p>
+              </div>
+              <span className="text-secondary font-bold text-[12px] mt-3">Review IP Terms →</span>
+            </Link>
+
+            <Link to="/pilot-sandbox" className="p-4 bg-surface-container-lowest rounded-xl border border-outline-variant hover:border-primary shadow-sm flex flex-col justify-between">
+              <div>
+                <span className="text-[11px] font-bold text-success bg-success/10 px-2 py-0.5 rounded">Feature 2.3</span>
+                <h3 className="font-bold text-label-md text-on-surface mt-2">Live Sandbox Telemetry</h3>
+                <p className="text-[12px] text-on-surface-variant mt-1">View real-time canal/traffic metrics & burn rate.</p>
+              </div>
+              <span className="text-success font-bold text-[12px] mt-3">View Sandbox →</span>
+            </Link>
           </div>
 
           {/* GFR Waiver Banner */}
