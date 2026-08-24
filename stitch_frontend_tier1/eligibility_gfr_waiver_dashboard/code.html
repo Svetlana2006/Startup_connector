@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eligibility Screening - MSInS Procurement Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed-dim": "#adc7f7",
+                      "on-primary-fixed-variant": "#2d476f",
+                      "tertiary-fixed": "#d9e3f9",
+                      "surface": "#f7fafc",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffddba",
+                      "surface-container-high": "#e5e9eb",
+                      "on-primary-container": "#86a0cd",
+                      "secondary": "#875200",
+                      "error": "#ba1a1a",
+                      "secondary-fixed-dim": "#ffb866",
+                      "surface-bright": "#f7fafc",
+                      "on-primary": "#ffffff",
+                      "primary-container": "#1a365d",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "surface-container-low": "#f1f4f6",
+                      "primary-fixed": "#d6e3ff",
+                      "tertiary-container": "#2c3647",
+                      "on-primary-fixed": "#001b3c",
+                      "inverse-on-surface": "#eef1f3",
+                      "secondary-container": "#ffb55c",
+                      "surface-tint": "#455f88",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-container": "#959fb3",
+                      "on-surface-variant": "#43474e",
+                      "on-secondary-fixed": "#2b1700",
+                      "on-tertiary-fixed-variant": "#3d4759",
+                      "on-background": "#181c1e",
+                      "outline": "#74777f",
+                      "background": "#f7fafc",
+                      "surface-container-highest": "#e0e3e5",
+                      "surface-variant": "#e0e3e5",
+                      "on-error-container": "#93000a",
+                      "primary": "#002045",
+                      "tertiary-fixed-dim": "#bdc7dc",
+                      "on-secondary-container": "#744600",
+                      "on-tertiary-fixed": "#121c2c",
+                      "inverse-surface": "#2d3133",
+                      "on-surface": "#181c1e",
+                      "tertiary": "#172131",
+                      "surface-container": "#ebeef0",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#adc7f7",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c4c6cf",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d7dadc"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "unit": "4px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "xl": "40px",
+                      "sm": "8px",
+                      "gutter": "24px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Public Sans"
+                      ],
+                      "headline-lg-mobile": [
+                              "Public Sans"
+                      ],
+                      "headline-lg": [
+                              "Public Sans"
+                      ],
+                      "display-lg": [
+                              "Public Sans"
+                      ],
+                      "body-lg": [
+                              "Public Sans"
+                      ],
+                      "headline-md": [
+                              "Public Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .shadow-ambient {
+            box-shadow: 0px 2px 4px rgba(26, 54, 93, 0.06);
+        }
+        .shadow-ambient-hover {
+            box-shadow: 0px 10px 15px rgba(26, 54, 93, 0.1);
+        }
+        .bg-success {
+            background-color: #d1fae5; /* Tailwind green-100 approx */
+        }
+        .text-success {
+            color: #065f46; /* Tailwind green-900 approx */
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none flex justify-between items-center px-lg py-sm w-full sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">MSInS Procurement Portal</span>
+</div>
+<div class="flex items-center gap-lg">
+<nav class="hidden md:flex gap-md">
+<span class="text-primary dark:text-inverse-primary border-b-2 border-primary text-label-md font-label-md py-sm cursor-pointer active:opacity-80">Eligibility Screening</span>
+<span class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md py-sm hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80">Role: Admin</span>
+</nav>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer text-on-surface-variant hover:text-primary transition-colors p-sm rounded-full hover:bg-surface-container-low" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden ml-sm">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small, professional user avatar portrait of a government official. Minimalist style, bright corporate lighting, light mode UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0zyD8LKOqZpspZTvgeBNZhDNtk_6TvNzm8n9DQ_479FOBrv-_Jmp1bCWubxsY6RAfj1mUMyan18BJk6_m9CpwZ74n-EaWWzvExJ280H8D5X9UlN1u-fk2d0iAA3eG9jFjy5syNUsInIVsQe1MmXopibb5l7e35JAgjVomICo9RI_QLQaKf3JRFC9Qt3668URwQ5bbdZa7zfgXHYvTq4nG9-tle7Hqd2dCYhhWo-JDkj_Jh7_ul4JWDg"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-lowest h-screen w-64 border-r border-outline-variant flex flex-col fixed left-0 top-0 pt-20 pb-md overflow-y-auto hidden md:flex z-40">
+<div class="px-md mb-lg flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-white border border-outline-variant flex items-center justify-center p-1">
+<img alt="Maharashtra State Logo" class="w-full h-full object-contain" data-alt="The official Maharashtra State Logo, designed cleanly as an icon for a modern dashboard sidebar. Crisp lines, high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIIb2WApDEE1qKjqZra9VGfG9Ko2dbYmBjR7TWDBQ95mgo_qazhGh1n3GtilTzw_PQub5lgnJAkSs_9wMbcQBzq-WafQBt_OFxFEcnwI9rauNx6MVkzQ-hD5OTzjjWPYiu4gRTMoC3bj_Zkex1Blay67MpFemhbgiHMQwviAmBaCrFHMRTJJih7GPi-SC1fnI8O97dhh5cB-JtdrQNHICHIqRdOXo13G7ffAZxbZg3AJXKclQK7JmMow"/>
+</div>
+<div>
+<div class="text-label-md font-bold text-primary">Procurement Hub</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Workflow Management</div>
+</div>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-sm rounded-lg hover:bg-opacity-90 transition-colors shadow-sm flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Application
+                </button>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-label-md font-label-md">Discovery</span>
+</a>
+<a class="bg-primary-container text-on-primary-container font-bold rounded-lg mx-2 flex items-center gap-md p-md mb-xs" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check" style="font-variation-settings: 'FILL' 1;">fact_check</span>
+<span class="text-label-md font-label-md">Eligibility</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="text-label-md font-label-md">Evaluation</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="text-label-md font-label-md">Approval</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="text-label-md font-label-md">Waiver</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch">rocket_launch</span>
+<span class="text-label-md font-label-md">Pilot</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="text-label-md font-label-md">Execution</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Monitoring</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="text-label-md font-label-md">Closing</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-md">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-label-md font-label-md">Policy Docs</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-md md:p-lg xl:p-xl flex justify-center">
+<div class="w-full max-w-[1280px]">
+<!-- Page Header -->
+<div class="mb-lg">
+<h1 class="text-headline-lg font-headline-lg text-primary md:text-display-lg md:font-display-lg mb-sm">Eligibility Screening</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Application ID: #APP-2024-8932</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Checklist Column -->
+<div class="lg:col-span-2 space-y-lg">
+<!-- Core Eligibility Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-ambient p-lg">
+<div class="border-b border-outline-variant pb-md mb-md">
+<h2 class="text-headline-md font-headline-md text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="checklist">checklist</span>
+                                    Core Requirements
+                                </h2>
+</div>
+<div class="space-y-md">
+<!-- Check Item 1 -->
+<div class="flex items-start gap-md p-md bg-surface-container-low rounded-lg border border-transparent hover:border-primary-fixed-dim transition-colors">
+<div class="bg-success rounded-full p-1 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-success text-[20px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface mb-xs">DPIIT Recognition</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Verified Maharashtra based startup registration.</p>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">Auto-verified</div>
+</div>
+<!-- Check Item 2 -->
+<div class="flex items-start gap-md p-md bg-surface-container-low rounded-lg border border-transparent hover:border-primary-fixed-dim transition-colors">
+<div class="bg-success rounded-full p-1 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-success text-[20px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<h3 class="text-body-lg font-bold text-on-surface mb-xs">Startup Age</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Entity incorporated less than 10 years ago (Inc. 2018).</p>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant bg-surface-container-high px-2 py-1 rounded">Auto-verified</div>
+</div>
+</div>
+</div>
+<!-- Waiver Status Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant shadow-ambient p-lg">
+<div class="border-b border-outline-variant pb-md mb-md">
+<h2 class="text-headline-md font-headline-md text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+                                    Exemptions &amp; Waivers
+                                </h2>
+</div>
+<div class="space-y-md">
+<!-- Waiver Item 1 -->
+<div class="flex items-start gap-md p-md bg-surface-container-low rounded-lg border-l-4 border-l-secondary">
+<div class="bg-success rounded-full p-1 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-success text-[20px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="text-body-lg font-bold text-on-surface">Turnover Requirement</h3>
+<span class="bg-[#d1fae5] text-[#065f46] text-label-sm font-label-sm px-2 py-1 rounded-full font-bold">Waived under GFR Rule 173(i)</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Prior turnover criteria is waived for this recognized startup.</p>
+</div>
+</div>
+<!-- Waiver Item 2 -->
+<div class="flex items-start gap-md p-md bg-surface-container-low rounded-lg border-l-4 border-l-secondary">
+<div class="bg-success rounded-full p-1 flex-shrink-0 mt-1">
+<span class="material-symbols-outlined text-success text-[20px]" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-xs">
+<h3 class="text-body-lg font-bold text-on-surface">Prior Experience</h3>
+<span class="bg-[#d1fae5] text-[#065f46] text-label-sm font-label-sm px-2 py-1 rounded-full font-bold">Waived for Innovation Pilot</span>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant">Standard prior experience requirement is waived for pilot projects.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Callout / Info Column -->
+<div class="lg:col-span-1">
+<!-- Legal Callout Box -->
+<div class="bg-primary-container text-on-primary-container rounded-lg p-lg shadow-ambient sticky top-[100px]">
+<div class="flex items-center gap-sm mb-md pb-sm border-b border-on-primary-container/20">
+<span class="material-symbols-outlined text-display-lg" data-icon="gavel" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<h3 class="text-headline-md font-headline-md font-bold">Legal Validity Notice</h3>
+</div>
+<div class="space-y-md text-body-md font-body-md">
+<p>
+<strong>Reassurance for Department Officials:</strong><br/>
+                                    The waivers applied to this application are legally mandated under the General Financial Rules (GFR) 2017.
+                                </p>
+<p>
+<strong>Rule 173(i):</strong> "Relaxation of prior turnover and prior experience may be granted to all Startups (whether Micro &amp; Small Enterprises or otherwise) subject to meeting of quality and technical specifications."
+                                </p>
+<p class="text-sm opacity-90 italic">
+                                    These auto-checks are synchronized with DPIIT databases and serve as valid administrative clearance for proceeding to the Evaluation phase.
+                                </p>
+</div>
+<div class="mt-lg pt-md border-t border-on-primary-container/20">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded-lg hover:bg-opacity-90 transition-colors font-bold shadow-md">
+                                    Approve Eligibility
+                                </button>
+<button class="w-full mt-sm border border-on-primary-container text-on-primary-container font-label-md text-label-md py-sm rounded-lg hover:bg-on-primary-container/10 transition-colors">
+                                    Request Clarification
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-xl py-lg w-full mt-auto">
+<div class="text-on-surface dark:text-on-surface-variant text-body-md font-body-md mb-md md:mb-0 text-center md:text-left">
+<span class="text-label-md font-bold block mb-xs">MSInS Procurement Portal</span>
+            © 2024 Maharashtra State Innovation Society (MSInS). All rights reserved.
+        </div>
+<nav class="flex flex-wrap gap-lg justify-center">
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">DPIIT</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">GFR 173(i) Policy</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Accessibility</a>
+<a class="text-on-surface-variant text-label-sm font-label-sm hover:text-primary transition-colors" href="#">Contact Support</a>
+</nav>
+</footer>
+</body></html>

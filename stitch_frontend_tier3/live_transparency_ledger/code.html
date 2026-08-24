@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Transparency Ledger - MSInS Procurement Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@500;600&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#d9e3f9",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "surface-bright": "#f7fafc",
+                        "on-surface-variant": "#43474e",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eef1f3",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-tertiary-container": "#959fb3",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "secondary": "#875200",
+                        "surface-variant": "#e0e3e5",
+                        "inverse-surface": "#2d3133",
+                        "on-tertiary-fixed": "#121c2c",
+                        "secondary-fixed": "#ffddba",
+                        "outline-variant": "#c4c6cf",
+                        "background": "#f7fafc",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-primary-container": "#86a0cd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2b1700",
+                        "tertiary": "#172131",
+                        "secondary-fixed-dim": "#ffb866",
+                        "surface-container-low": "#f1f4f6",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-container": "#ebeef0",
+                        "secondary-container": "#ffb55c",
+                        "primary": "#002045",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#744600",
+                        "primary-fixed": "#d6e3ff",
+                        "on-surface": "#181c1e",
+                        "inverse-primary": "#adc7f7",
+                        "surface-container-high": "#e5e9eb",
+                        "surface-tint": "#455f88",
+                        "on-background": "#181c1e",
+                        "tertiary-container": "#2c3647",
+                        "primary-container": "#1a365d",
+                        "surface": "#f7fafc",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#d7dadc",
+                        "on-primary": "#ffffff",
+                        "outline": "#74777f",
+                        "mono": "#1a1a1a" // Added for technical feel if needed, though primary handles it
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Public Sans"],
+                        "body-md": ["Public Sans"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Public Sans"],
+                        "headline-md": ["Public Sans"],
+                        "body-lg": ["Public Sans"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(0, 32, 69, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 32, 69, 0.05) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .hash-text {
+            font-family: 'JetBrains Mono', monospace;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none flex justify-between items-center px-lg py-sm w-full sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">MSInS Procurement Portal</span>
+</div>
+<div class="flex items-center gap-lg">
+<nav class="hidden md:flex gap-md">
+<span class="text-on-surface-variant dark:text-surface-variant text-label-md font-label-md">Role: Admin</span>
+</nav>
+<div class="flex items-center gap-sm">
+<button aria-label="notifications" class="text-primary dark:text-inverse-primary cursor-pointer active:opacity-80 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-sm rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications" data-weight="regular">notifications</span>
+</button>
+<button aria-label="settings" class="text-primary dark:text-inverse-primary cursor-pointer active:opacity-80 hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors p-sm rounded-full">
+<span class="material-symbols-outlined" data-icon="settings" data-weight="regular">settings</span>
+</button>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover ml-sm border border-outline-variant" data-alt="A small, professional user avatar portrait of an administrative official in a light-mode corporate setting. The lighting is soft and even, highlighting a trustworthy expression. The background is a subtle, solid government blue to match the portal's brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkBLuvcO_PEWxbXL5vlfCW3mxCY3Mrm1rFpPB-N6OvHztQWNh12EuDeH4z82zRXGSSdMgtIdyUOaz2VBophIhRkg-uWurPd2STX1NgJtxsI_fcTxuWTQLUeN51cXXP_TueFzyc5NNmdSuvyEwjQRhGSHLAeE4_Vl9pgmphpH1S9o2xCcl9LQC0ky8Z9Ir1Dz6XSgdQcbL0kj4-PbaVkciCT7N8oZyimB1YcKeNNix73XuRAyuR3Vmo2w"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="bg-surface-container-low dark:bg-surface-container-lowest h-screen w-64 border-r border-outline-variant flex flex-col fixed left-0 top-0 pt-20 pb-md overflow-y-auto hidden md:flex z-40 shadow-none">
+<div class="px-lg pb-md mb-md border-b border-outline-variant flex items-center gap-sm">
+<img alt="Maharashtra State Logo" class="w-10 h-10 object-contain" data-alt="A stylized, modern emblem representing the Maharashtra State Logo, rendered in vibrant corporate colors against a clean white background. The design is crisp and authoritative, fitting for a government portal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdcJGMaNKQm27VON3Q1NaBNOLArHityMFLNk0QAMQFQyo3hHw35PPcp7Ym2i1EIGcRKfgTJ4y2lpZ3di9vvShDjbixcIl7cYxuaxF-YglK_pQ55LBC9bPUavHjANxpwn6FLpY5Lq8EYJHpuUPl1sk2QpJFnxfc9MgptnZi8u4D4DwBsa11MrUnjFmiIvG3T4qxPTgcTF-WHTqhOJ2pZwApzArg4fWvPTz9Vmf8H7Ln8rX473EfThoZNw"/>
+<div>
+<h2 class="text-label-md font-bold text-primary">Procurement Hub</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Workflow Management</p>
+</div>
+</div>
+<div class="px-md mb-lg">
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-sm px-md rounded-lg hover:opacity-90 transition-opacity">New Application</button>
+</div>
+<nav class="flex-1 flex flex-col gap-xs px-xs">
+<!-- Navigation Items -->
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-label-md font-label-md">Discovery</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+<span class="text-label-md font-label-md">Eligibility</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span>
+<span class="text-label-md font-label-md">Evaluation</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span>
+<span class="text-label-md font-label-md">Approval</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="text-label-md font-label-md">Waiver</span>
+</a>
+<!-- Active Item: Pilot, assuming we are viewing a Pilot milestone ledger -->
+<a class="bg-primary-container text-on-primary-container font-bold rounded-lg mx-2 flex items-center gap-md p-md mb-xs" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span class="text-label-md font-label-md">Pilot</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span class="text-label-md font-label-md">Execution</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-label-md font-label-md">Monitoring</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span>
+<span class="text-label-md font-label-md">Closing</span>
+</a>
+</nav>
+<div class="mt-auto px-xs pt-md border-t border-outline-variant">
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-label-md font-label-md">Help Center</span>
+</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg transition-all flex items-center gap-md p-md mb-xs mx-2" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-label-md font-label-md">Policy Docs</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-grid-pattern relative overflow-y-auto">
+<div class="max-w-[1280px] mx-auto px-md md:px-lg py-xl min-h-full flex flex-col">
+<!-- Page Header -->
+<div class="mb-lg flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-primary mb-xs">Live Transparency Ledger</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl">Cryptographically verifiable audit trail of all critical procurement actions. Ensures immutability and institutional accountability.</p>
+</div>
+<div class="flex items-center gap-sm bg-surface-container py-xs px-sm rounded-lg border border-outline-variant">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-secondary"></span>
+</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant tracking-wider uppercase">System Live</span>
+</div>
+</div>
+<!-- Ledger Container -->
+<div class="bg-surface rounded-xl shadow-sm border border-outline-variant flex-1 overflow-hidden flex flex-col backdrop-blur-sm bg-opacity-95">
+<!-- Ledger Header -->
+<div class="bg-primary bg-opacity-10 py-sm px-lg border-b border-outline-variant grid grid-cols-12 gap-sm items-center">
+<div class="col-span-2 text-label-md font-label-md text-primary">Timestamp (UTC)</div>
+<div class="col-span-4 text-label-md font-label-md text-primary">Action / Event</div>
+<div class="col-span-3 text-label-md font-label-md text-primary">Authorizing Officer</div>
+<div class="col-span-3 text-label-md font-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm" data-icon="security" style="font-size: 16px;">security</span>
+                            SHA-256 Signature
+                        </div>
+</div>
+<!-- Ledger Body (Scrolling List) -->
+<div class="flex-1 overflow-y-auto" id="ledger-body">
+<!-- Entry 1 -->
+<div class="grid grid-cols-12 gap-sm px-lg py-md border-b border-surface-variant items-start hover:bg-surface-container-low transition-colors group">
+<div class="col-span-2 text-label-sm font-label-sm text-on-surface-variant font-mono pt-1">
+                                2024-05-14<br/>09:41:22
+                            </div>
+<div class="col-span-4 pr-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-secondary mt-0.5" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<div class="text-body-md font-body-md font-bold text-on-surface">Pilot Milestone 3 Approved</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">Ref: PRJ-2024-889 • Phase Verification</div>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-xs flex items-center justify-center font-bold">AJ</div>
+<span class="text-label-md font-label-md text-on-surface">Amit Joshi</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant ml-8">Joint Director, Tech</div>
+</div>
+<div class="col-span-3 bg-surface-container-lowest rounded border border-outline-variant p-sm flex items-center gap-2 overflow-hidden relative">
+<span class="hash-text text-label-sm text-outline group-hover:text-primary transition-colors line-clamp-2">0x7b2f9a1c4e8d3b5a7f2c9e1d4b6a8c3f5e7d9b2a1c4e6f8</span>
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-lowest to-transparent pointer-events-none"></div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="grid grid-cols-12 gap-sm px-lg py-md border-b border-surface-variant items-start hover:bg-surface-container-low transition-colors group">
+<div class="col-span-2 text-label-sm font-label-sm text-on-surface-variant font-mono pt-1">
+                                2024-05-14<br/>08:15:04
+                            </div>
+<div class="col-span-4 pr-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="description" style="font-variation-settings: 'FILL' 1;">description</span>
+<div>
+<div class="text-body-md font-body-md font-bold text-on-surface">GFR 173(i) Waiver Initiated</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">Vendor: TechNova Solutions Ltd.</div>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs flex items-center justify-center font-bold">SM</div>
+<span class="text-label-md font-label-md text-on-surface">Sneha Menon</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant ml-8">Procurement Officer</div>
+</div>
+<div class="col-span-3 bg-surface-container-lowest rounded border border-outline-variant p-sm flex items-center gap-2 overflow-hidden relative">
+<span class="hash-text text-label-sm text-outline group-hover:text-primary transition-colors line-clamp-2">0x9c4f1b2d7e5a8c3f6b9d2a4e1f7c5b8a3d6e9f2c1b4a7</span>
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-lowest to-transparent pointer-events-none"></div>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="grid grid-cols-12 gap-sm px-lg py-md border-b border-surface-variant items-start hover:bg-surface-container-low transition-colors group">
+<div class="col-span-2 text-label-sm font-label-sm text-on-surface-variant font-mono pt-1">
+                                2024-05-13<br/>16:45:30
+                            </div>
+<div class="col-span-4 pr-md">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-surface-tint mt-0.5" data-icon="gavel" style="font-variation-settings: 'FILL' 1;">gavel</span>
+<div>
+<div class="text-body-md font-body-md font-bold text-on-surface">Bid Evaluation Completed</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant mt-0.5">Tender: TND-2024-045 (Smart City IoT)</div>
+</div>
+</div>
+</div>
+<div class="col-span-3">
+<div class="flex items-center gap-sm">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container text-xs flex items-center justify-center font-bold">RK</div>
+<span class="text-label-md font-label-md text-on-surface">Rajiv Kumar</span>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant ml-8">Evaluation Comm. Head</div>
+</div>
+<div class="col-span-3 bg-surface-container-lowest rounded border border-outline-variant p-sm flex items-center gap-2 overflow-hidden relative">
+<span class="hash-text text-label-sm text-outline group-hover:text-primary transition-colors line-clamp-2">0x2a5f8b1c4e7d9a3f6c2b5e8a1d4f7c9b2e5a8c1f4d7b3</span>
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-surface-container-lowest to-transparent pointer-events-none"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer inside main to scroll with content -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant mt-auto flex flex-col md:flex-row justify-between items-center px-xl py-lg w-full">
+<span class="text-label-sm font-label-sm text-on-surface dark:text-on-surface-variant">© 2024 Maharashtra State Innovation Society (MSInS). All rights reserved.</span>
+<div class="flex gap-lg mt-sm md:mt-0">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">DPIIT</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">GFR 173(i) Policy</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Accessibility</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Support</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

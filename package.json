@@ -1,0 +1,19 @@
+{
+  "name": "govbridge-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GovBridge — Startup-friendly public procurement for Maharashtra (monorepo)",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=packages/client",
+    "build": "npm run build --workspace=packages/client",
+    "preview": "npm run preview --workspace=packages/client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Svetlana2006/Startup_connector.git"
+  },
+  "license": "ISC"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@govbridge/data",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared data layer — DPIIT startups, problem statements, GFR constants",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  }
+}

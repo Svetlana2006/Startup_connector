@@ -1,0 +1,15 @@
+{
+  "name": "@govbridge/ui",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared design system — Layout, SideNav, TopNav, AppFooter, nav links",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "react-router-dom": ">=6"
+  }
+}

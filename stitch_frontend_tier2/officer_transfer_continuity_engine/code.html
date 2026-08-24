@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Officer Transfer Continuity - Handover Brief</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed": "#001b3c",
+                        "background": "#f7fafc",
+                        "primary": "#002045",
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-background": "#181c1e",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "on-surface": "#181c1e",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d9e3f9",
+                        "on-secondary-container": "#744600",
+                        "secondary": "#875200",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "secondary-fixed-dim": "#ffb866",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#121c2c",
+                        "tertiary": "#172131",
+                        "primary-fixed": "#d6e3ff",
+                        "inverse-primary": "#adc7f7",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e5e9eb",
+                        "inverse-on-surface": "#eef1f3",
+                        "on-tertiary-container": "#959fb3",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface": "#f7fafc",
+                        "primary-container": "#1a365d",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-container": "#2c3647",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "secondary-container": "#ffb55c",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2d3133",
+                        "surface-bright": "#f7fafc",
+                        "on-surface-variant": "#43474e",
+                        "outline": "#74777f",
+                        "surface-container": "#ebeef0",
+                        "surface-container-low": "#f1f4f6",
+                        "surface-tint": "#455f88",
+                        "surface-dim": "#d7dadc",
+                        "on-primary-container": "#86a0cd",
+                        "secondary-fixed": "#ffddba"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Public Sans"],
+                        "body-lg": ["Public Sans"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Public Sans"],
+                        "headline-lg": ["Public Sans"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7fafc; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c6cf; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #74777f; 
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Rendered exact from JSON to maintain brand anchor, Navigation suppressed due to gate) -->
+<header class="bg-surface flex justify-between items-center px-lg py-sm w-full sticky top-0 z-50 border-b border-outline-variant shadow-sm">
+<div class="flex items-center gap-md cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+<h1 class="text-headline-md font-headline-md font-bold text-primary">MSInS Procurement Portal</h1>
+</div>
+<div class="hidden md:flex items-center bg-surface-container-low rounded-full px-md py-xs border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant mr-sm">search</span>
+<input class="bg-transparent border-none outline-none text-body-md font-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 w-64" placeholder="Search Portal..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<!-- Navigation links rendered as requested by JSON -->
+<span class="text-on-surface-variant text-label-md font-label-md px-sm py-xs hover:bg-surface-container-low transition-colors rounded-lg cursor-pointer">Role: Admin</span>
+<div class="flex items-center gap-xs">
+<button class="p-xs rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors cursor-pointer active:opacity-80 flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors cursor-pointer active:opacity-80 flex items-center justify-center h-10 w-10">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant ml-sm cursor-pointer active:opacity-80">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A small, professional headshot photo of an administrator, featuring a neat appearance against a neutral gray background, representing a generic user profile avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBR0a2_bXr3krvxpEK0NMMCOpiqXakbIY2hofbXHWeH-u4_chF90widM-4th3hUhdzZhNpUzS-TnpOZTOe-Z989zcqptA8G-k0Iq7RLzrdgIq8Oe4FKRHQB6NKr2gKP6bHS7B50L948WmE9paE1zAyISkFjOKUx1vYyTsB8IxkCwv862x_pbkYMI7AdkpyntHpo0Jmi6Dry0UxLJnzgfvU8xQkU1Gr3CTefJ7bdHJ6DkKKGtrG0znrpXQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas (SideNav Suppressed due to Transactional Gate logic) -->
+<main class="flex-1 w-full bg-surface-container py-xl px-md md:px-lg overflow-y-auto flex flex-col items-center">
+<!-- Contextual Header -->
+<div class="max-w-[1024px] w-full mb-lg text-center">
+<div class="inline-flex items-center justify-center p-sm bg-primary-fixed rounded-full mb-sm">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">sync_alt</span>
+</div>
+<h2 class="text-display-lg font-display-lg text-on-surface mb-xs">Continuity Engine Protocol</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                Secure Handover Brief. You must review the status of this critical active pilot and assume oversight before continuing to the main dashboard.
+            </p>
+</div>
+<!-- Handover Brief Document Card -->
+<div class="max-w-[1024px] w-full bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Document Header -->
+<div class="bg-surface-container-low border-b border-outline-variant p-lg md:p-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-sm py-xs bg-tertiary-fixed text-on-tertiary-fixed text-label-sm font-label-sm rounded-md tracking-wider">PILOT PROGRAM</span>
+<span class="text-on-surface-variant text-label-sm font-label-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span> Pune District
+                        </span>
+</div>
+<h3 class="text-headline-lg font-headline-lg text-primary">Smart Traffic AI Synchronization</h3>
+<p class="text-body-md font-body-md text-on-surface-variant mt-xs">Reference ID: PLT-2024-883A</p>
+</div>
+<div class="flex flex-col items-end gap-sm bg-surface-container-lowest p-sm rounded-lg border border-outline-variant">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wide">Transition From</span>
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-primary font-bold text-label-md">
+                            JD
+                        </div>
+<div>
+<p class="text-label-md font-label-md text-on-surface">J. Deshmukh</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Outgoing Joint Secretary</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Content Body -->
+<div class="p-lg md:p-xl grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Project Context (Col 8) -->
+<div class="md:col-span-8 flex flex-col gap-sm">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-primary">menu_book</span>
+<h4 class="text-headline-md font-headline-md text-on-surface">1. Strategic Context &amp; Objectives</h4>
+</div>
+<div class="text-body-md font-body-md text-on-surface-variant space-y-md mt-sm">
+<p>
+                            The "Smart Traffic AI Synchronization" pilot was initiated to address critical congestion bottlenecks along the Pune IT corridor (Hinjewadi-Wakad link). Traditional static timing algorithms were resulting in an average of 42 minutes of unproductive transit time during peak hours.
+                        </p>
+<p>
+<strong>Primary Objective:</strong> Implement computer-vision-based dynamic light synchronization to reduce peak-hour congestion by a target metric of 25% within a 6-month evaluation window. The solution leverages existing CCTV infrastructure, passing edge-computed data to a centralized traffic engine.
+                        </p>
+</div>
+</div>
+<!-- Startup POC (Col 4) -->
+<div class="md:col-span-4 bg-surface rounded-lg p-md border border-outline-variant flex flex-col h-full">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-xs mb-md">
+<span class="material-symbols-outlined text-primary">contacts</span>
+<h4 class="text-label-md font-label-md text-on-surface uppercase tracking-wide">4. Innovation Partner</h4>
+</div>
+<div class="flex flex-col items-center text-center mt-sm">
+<img class="w-20 h-20 rounded-full object-cover border-2 border-surface-container-high mb-sm shadow-sm" data-alt="A professional headshot portrait of a tech startup founder in their 30s. They have a confident but approachable expression, wearing a neat navy blue blazer over a plain white t-shirt. The background is a brightly lit, modern office environment with blurred glass partitions. Shot in high resolution, emphasizing corporate modernism and a trustworthy aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEePajejCfa7P-E-vUNZrdF61_hQYFqnpWsi3pTMA03dSnZYB3XCQELQCBd1HCXCohubavvxyHveGiLXiLIE3kjFgmqrfToTX3Lr-YQOQSaqIkPo_yX1C53vsq3RZiPOVDRxGs5ShLWpin1KK9jCBggSWetVGKVkrIfWRY-JxcnQe4Lcy4lZiKc6g6kAl3EtolrBhxtp7X5US6tGkkia7ppHX44tGMtwwXWSoGNTQTvTUnhLswqTDyOw"/>
+<p class="text-headline-md font-headline-md text-on-surface">Rahul Sharma</p>
+<p class="text-body-md font-body-md text-primary font-semibold">Nexus AI Analytics Pvt Ltd</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-xs">Lead Deployment Engineer</p>
+<div class="w-full bg-surface-container-lowest border border-outline-variant rounded-md p-sm mt-md flex flex-col gap-xs text-left">
+<a class="text-label-sm font-label-sm text-primary hover:underline flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px]">mail</span> rahul.s@nexusai.in
+                            </a>
+<a class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs" href="#">
+<span class="material-symbols-outlined text-[16px]">call</span> +91 98XXX XXXXX
+                            </a>
+</div>
+</div>
+</div>
+<!-- Current Status (Col 6) -->
+<div class="md:col-span-6 flex flex-col gap-sm mt-md">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-primary">timeline</span>
+<h4 class="text-headline-md font-headline-md text-on-surface">2. Pilot Milestone Status</h4>
+</div>
+<div class="bg-surface-container rounded-lg p-md mt-sm flex flex-col gap-md">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase">Current Phase</p>
+<p class="text-headline-md font-headline-md text-primary">Milestone 3 of 5</p>
+</div>
+<span class="px-sm py-xs bg-secondary-container text-on-secondary-container text-label-sm font-label-sm rounded-md font-bold">IN PROGRESS</span>
+</div>
+<!-- Progress Stepper -->
+<div class="relative w-full mt-sm">
+<div class="absolute top-1/2 left-0 w-full h-1 bg-surface-variant -translate-y-1/2 rounded-full"></div>
+<div class="absolute top-1/2 left-0 w-1/2 h-1 bg-primary -translate-y-1/2 rounded-full transition-all duration-500"></div>
+<div class="relative flex justify-between z-10">
+<div class="w-4 h-4 rounded-full bg-primary ring-4 ring-surface-container"></div>
+<div class="w-4 h-4 rounded-full bg-primary ring-4 ring-surface-container"></div>
+<div class="w-4 h-4 rounded-full bg-surface-container-lowest border-2 border-primary ring-4 ring-surface-container"></div>
+<div class="w-4 h-4 rounded-full bg-surface-variant ring-4 ring-surface-container"></div>
+<div class="w-4 h-4 rounded-full bg-surface-variant ring-4 ring-surface-container"></div>
+</div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant px-xs">
+<span>Kickoff</span>
+<span>Deployment</span>
+<span class="text-primary font-bold">Live Testing</span>
+<span>Audit</span>
+<span>Completion</span>
+</div>
+</div>
+</div>
+<!-- Pending Critical Actions (Col 6) -->
+<div class="md:col-span-6 flex flex-col gap-sm mt-md">
+<div class="flex items-center gap-sm border-b border-outline-variant pb-xs">
+<span class="material-symbols-outlined text-error">warning</span>
+<h4 class="text-headline-md font-headline-md text-on-surface">3. Pending Critical Actions</h4>
+</div>
+<div class="flex flex-col gap-xs mt-sm">
+<!-- Action Item 1 -->
+<div class="bg-surface rounded-md border-l-4 border-error p-sm flex items-start gap-sm shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-error mt-xs" style="font-variation-settings: 'FILL' 1;">assignment_late</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Approve Phase 2 Invoice Delivery</p>
+<p class="text-body-md font-body-md text-on-surface-variant text-[14px]">Hardware deployment invoice (₹12.5L) is pending administrative clearance since 3 days.</p>
+</div>
+</div>
+<!-- Action Item 2 -->
+<div class="bg-surface rounded-md border-l-4 border-secondary p-sm flex items-start gap-sm shadow-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-secondary mt-xs">policy</span>
+<div>
+<p class="text-label-md font-label-md text-on-surface">Review Data Privacy Addendum</p>
+<p class="text-body-md font-body-md text-on-surface-variant text-[14px]">Legal team updated the CCTV stream retention policy. Signature required to proceed to Milestone 4.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Acknowledgment Gate (Sticky-like Footer of Card) -->
+<div class="bg-primary-fixed border-t-2 border-primary-container p-xl flex flex-col items-center text-center mt-auto">
+<div class="max-w-2xl flex flex-col items-center gap-md">
+<span class="material-symbols-outlined text-primary text-[40px]">security</span>
+<h4 class="text-headline-lg font-headline-lg text-on-primary-fixed">Administrative Oversight Transfer</h4>
+<p class="text-body-md font-body-md text-on-primary-fixed-variant">
+                        By checking the box below, you formally acknowledge receipt of this handover brief and assume full operational and administrative responsibility for the Smart Traffic AI pilot program.
+                    </p>
+<label class="flex items-center gap-sm mt-sm cursor-pointer group p-sm bg-surface-container-lowest rounded-md border border-outline-variant hover:border-primary transition-colors">
+<input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary focus:ring-2 cursor-pointer" id="ack-checkbox" type="checkbox"/>
+<span class="text-label-md font-label-md text-on-surface group-hover:text-primary transition-colors select-none">I have reviewed the status and accept ownership of this project.</span>
+</label>
+<button class="mt-sm bg-surface-variant text-on-surface-variant px-xl py-sm rounded-lg font-label-md text-label-md transition-all duration-300 opacity-70 cursor-not-allowed flex items-center gap-sm" disabled="" id="take-ownership-btn">
+                        Acknowledge &amp; Take Ownership <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bottom spacing -->
+<div class="h-xl w-full"></div>
+</main>
+<script>
+        // Simple vanilla JS micro-interaction for the gate
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.getElementById('ack-checkbox');
+            const btn = document.getElementById('take-ownership-btn');
+
+            checkbox.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    btn.disabled = false;
+                    btn.classList.remove('bg-surface-variant', 'text-on-surface-variant', 'opacity-70', 'cursor-not-allowed');
+                    btn.classList.add('bg-primary', 'text-on-primary', 'shadow-md', 'hover:bg-primary-container', 'cursor-pointer');
+                } else {
+                    btn.disabled = true;
+                    btn.classList.add('bg-surface-variant', 'text-on-surface-variant', 'opacity-70', 'cursor-not-allowed');
+                    btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-md', 'hover:bg-primary-container', 'cursor-pointer');
+                }
+            });
+
+            btn.addEventListener('click', () => {
+                if(!btn.disabled) {
+                    // Simulate loading state
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = `<span class="material-symbols-outlined animate-spin mr-sm">autorenew</span> Processing Transfer...`;
+                    setTimeout(() => {
+                        btn.innerHTML = `<span class="material-symbols-outlined mr-sm">check_circle</span> Ownership Transferred`;
+                        btn.classList.replace('bg-primary', 'bg-[#198754]'); // Standard green for success visual feedback not in token list specifically but fits the semantic success action temporarily. Sticking to theme:
+                        // Actually, let's stick strictly to theme. We'll use secondary-container for success-ish look if needed, but primary is fine.
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body></html>

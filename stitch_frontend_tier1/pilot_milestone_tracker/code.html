@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pilot Tracker with Milestones</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&amp;family=Inter:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#adc7f7",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "tertiary-fixed": "#d9e3f9",
+                        "surface": "#f7fafc",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffddba",
+                        "surface-container-high": "#e5e9eb",
+                        "on-primary-container": "#86a0cd",
+                        "secondary": "#875200",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#ffb866",
+                        "surface-bright": "#f7fafc",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#1a365d",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "surface-container-low": "#f1f4f6",
+                        "primary-fixed": "#d6e3ff",
+                        "tertiary-container": "#2c3647",
+                        "on-primary-fixed": "#001b3c",
+                        "inverse-on-surface": "#eef1f3",
+                        "secondary-container": "#ffb55c",
+                        "surface-tint": "#455f88",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#959fb3",
+                        "on-surface-variant": "#43474e",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-tertiary-fixed-variant": "#3d4759",
+                        "on-background": "#181c1e",
+                        "outline": "#74777f",
+                        "background": "#f7fafc",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface-variant": "#e0e3e5",
+                        "on-error-container": "#93000a",
+                        "primary": "#002045",
+                        "tertiary-fixed-dim": "#bdc7dc",
+                        "on-secondary-container": "#744600",
+                        "on-tertiary-fixed": "#121c2c",
+                        "inverse-surface": "#2d3133",
+                        "on-surface": "#181c1e",
+                        "tertiary": "#172131",
+                        "surface-container": "#ebeef0",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#adc7f7",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#c4c6cf",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#d7dadc",
+                        // Custom colors for tracker status based on prompt
+                        "success": "#166534",
+                        "success-container": "#dcfce7",
+                        "on-success-container": "#14532d",
+                        "warning": "#d97706",
+                        "warning-container": "#fef3c7",
+                        "on-warning-container": "#78350f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "xl": "40px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Public Sans"],
+                        "headline-lg-mobile": ["Public Sans"],
+                        "headline-lg": ["Public Sans"],
+                        "display-lg": ["Public Sans"],
+                        "body-lg": ["Public Sans"],
+                        "headline-md": ["Public Sans"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Timeline Styles */
+        .timeline-connector {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            width: 100%;
+            height: 4px;
+            background-color: #e5e9eb; /* surface-container-high */
+            z-index: 0;
+        }
+        .timeline-connector.active {
+            background-color: #002045; /* primary */
+        }
+        
+        /* Toast Animation */
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .toast-enter { animation: slideInUp 0.3s ease-out forwards; }
+        .toast-exit { animation: fadeOut 0.3s ease-in forwards; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none flex justify-between items-center px-lg py-sm w-full sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary">MSInS Procurement Portal</span>
+</div>
+<div class="flex items-center gap-md text-primary dark:text-inverse-primary text-label-md font-label-md">
+<span class="text-on-surface-variant dark:text-surface-variant">Role: Admin</span>
+<div class="flex gap-sm">
+<button class="p-sm rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container-low dark:hover:bg-surface-container-highest transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+<img alt="User profile avatar" class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of an administrative user in a corporate setting, soft high-key lighting, modern clean aesthetic, neutral background, reflecting institutional reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZKJKbo23fRtOqBdc7xbs32OhjSSMG-4ywKpqPKIsS8RiaYd1QbYFrjfyQLalU6nokA2AAZWJzTy4y3Q38VniSwgRMAiYCfbo47lpGru4PO1WOwbI6QwTsxEmsUwdCKt7NmuWoAdSP1-wuymjAR8vEE627vjEjE-ejYsOm5VCYV8v7KcW42gouzLaavmOZBLjU-RZd-NHZVKohReEgmx2SDKr5nstls_casYqhdLgwCFegAicM5D2zyA"/>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-[calc(100vh-64px)] w-64 border-r border-outline-variant bg-surface-container-low dark:bg-surface-container-lowest overflow-y-auto">
+<div class="p-md flex items-center gap-md border-b border-outline-variant">
+<img alt="Maharashtra State Logo" class="w-10 h-10 object-contain" data-alt="A stylized geometric logo representing the Maharashtra State Government, featuring deep blue and saffron gold accents, minimal and official corporate design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCERTOA4F6kzVqNUinW0qkYKvAGZApNjQlISZUv0PUUjWcUboKope04rIyY2S5xmIrNGqLr6RmQoQDDKO8C70KPxRNFBKQiYFsyg7IGqL1YmguJ6ngzMP-oTFa-hO8731q0DcqNfNrIGs6yt568Wg0H1QKu3DoZn3kpL8hxKEg1HxQRU_oj9zEAE54ifehJdwz-0IfwUOTMDnMwSlbPOGgrUW55mXZS66ja0O-WkswhFdQaDy5ovNzKA"/>
+<div>
+<h2 class="text-label-md font-bold text-primary">Procurement Hub</h2>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Workflow Management</p>
+</div>
+</div>
+<div class="p-md">
+<button class="w-full bg-secondary text-on-primary rounded-lg py-sm px-md text-label-md font-label-md font-bold flex items-center justify-center gap-sm shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    New Application
+                </button>
+</div>
+<nav class="flex-1 px-sm py-sm space-y-unit">
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span> Discovery
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span> Eligibility
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="rate_review">rate_review</span> Evaluation
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="verified">verified</span> Approval
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span> Waiver
+                </a>
+<!-- Active State based on logic: "Pilot Tracker" implies Pilot section -->
+<a class="flex items-center gap-md p-md mb-xs bg-primary-container text-on-primary-container font-bold rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="rocket_launch" data-weight="fill">rocket_launch</span> Pilot
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span> Execution
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span> Monitoring
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="inventory">inventory</span> Closing
+                </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant p-sm space-y-unit">
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span> Help Center
+                </a>
+<a class="flex items-center gap-md p-md mb-xs text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg mx-2 transition-all text-label-md font-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span> Policy Docs
+                </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-surface relative">
+<div class="max-w-[1280px] mx-auto p-md md:p-lg space-y-lg">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Pilot Execution Tracker</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-sm">Project: AI Governance Sandbox (ID: MS-24-091A)</p>
+</div>
+<div class="flex gap-sm">
+<span class="inline-flex items-center gap-sm px-sm py-xs bg-warning-container text-on-warning-container rounded-full text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">pending_actions</span> Active Phase
+                        </span>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Timeline Card (Spans 8 cols on large screens) -->
+<div class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-lg">
+<div class="border-b border-outline-variant pb-md mb-xl flex justify-between items-center">
+<h2 class="text-headline-md font-headline-md text-primary">Deployment Milestones</h2>
+<button class="text-primary hover:bg-primary-container hover:text-on-primary-container px-sm py-xs rounded-lg text-label-sm font-label-sm transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">edit</span> Edit Timeline
+                            </button>
+</div>
+<!-- Horizontal Timeline -->
+<div class="relative w-full overflow-x-auto pb-lg pt-sm">
+<div class="flex justify-between min-w-[700px] relative px-xl">
+<!-- Milestone 1: Completed -->
+<div class="relative flex flex-col items-center w-1/4 z-10 group">
+<div class="timeline-connector active"></div>
+<div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-md mb-md relative z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined">check</span>
+</div>
+<div class="text-center">
+<h3 class="text-label-md font-label-md text-primary mb-xs">Sandbox Setup</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-sm">Completed Oct 12</p>
+<span class="inline-flex items-center gap-xs text-success text-label-sm font-label-sm bg-success-container px-2 py-1 rounded-md">
+<span class="material-symbols-outlined text-[14px]">payments</span> ₹2.5L Released
+                                        </span>
+</div>
+</div>
+<!-- Milestone 2: Active / Actionable -->
+<div class="relative flex flex-col items-center w-1/4 z-10 group">
+<div class="timeline-connector"></div>
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest border-2 border-primary text-primary flex items-center justify-center shadow-sm mb-md relative z-10 bg-white">
+<span class="material-symbols-outlined">play_arrow</span>
+</div>
+<div class="text-center">
+<h3 class="text-label-md font-label-md text-primary mb-xs">First Beta Release</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-sm">Due Nov 15</p>
+<button class="bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container px-md py-sm rounded-lg text-label-sm font-label-sm font-bold shadow-sm transition-all flex items-center gap-xs mx-auto" onclick="triggerPayment(this, '₹4.0L')">
+                                            Mark Complete
+                                        </button>
+</div>
+</div>
+<!-- Milestone 3: Pending -->
+<div class="relative flex flex-col items-center w-1/4 z-10 group opacity-60">
+<div class="timeline-connector"></div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center mb-md relative z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="text-center">
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-xs">Validation Report</h3>
+<p class="text-label-sm font-label-sm text-outline mb-sm">Pending</p>
+<div class="text-label-sm font-label-sm text-outline flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">lock</span> ₹3.5L Locked
+                                        </div>
+</div>
+</div>
+<!-- Milestone 4: Pending -->
+<div class="relative flex flex-col items-center w-1/4 z-10 group opacity-60">
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center mb-md relative z-10 border-4 border-surface-container-lowest">
+<span class="material-symbols-outlined">flag</span>
+</div>
+<div class="text-center">
+<h3 class="text-label-md font-label-md text-on-surface-variant mb-xs">Final Handover</h3>
+<p class="text-label-sm font-label-sm text-outline mb-sm">Pending</p>
+<div class="text-label-sm font-label-sm text-outline flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">lock</span> ₹2.0L Locked
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Budget Panel (Spans 4 cols on large screens) -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Financial Summary Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-md flex-1">
+<div class="border-b border-outline-variant pb-xs mb-md">
+<h2 class="text-label-md font-label-md font-bold text-on-surface-variant uppercase tracking-wider">Financial Overview</h2>
+</div>
+<div class="space-y-lg">
+<div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-xs">Total Budget Allocated</p>
+<p class="text-headline-md font-headline-md text-primary">₹12,00,000</p>
+</div>
+<div class="relative pt-sm">
+<div class="flex justify-between mb-xs">
+<span class="text-label-sm font-label-sm text-success font-bold" id="disbursed-label">₹2,50,000 Disbursed</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant" id="remaining-label">₹9,50,000 Remaining</span>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-success transition-all duration-1000 ease-out" id="progress-bar" style="width: 20.8%;"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant mt-md">
+<h4 class="text-label-sm font-label-sm font-bold text-primary mb-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span> Recent Transactions
+                                    </h4>
+<ul class="space-y-sm" id="transaction-list">
+<li class="flex justify-between items-center text-label-sm font-label-sm border-b border-outline-variant pb-xs">
+<span class="text-on-surface-variant">Sandbox Setup</span>
+<span class="text-success font-bold">₹2.5L</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast Notification Container -->
+<div class="fixed bottom-xl right-xl z-[100] flex flex-col gap-sm" id="toast-container"></div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant flex flex-col md:flex-row justify-between items-center px-xl py-lg w-full mt-auto">
+<div class="text-on-surface dark:text-on-surface-variant text-label-sm font-label-sm mb-md md:mb-0">
+            © 2024 Maharashtra State Innovation Society (MSInS). All rights reserved.
+        </div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">DPIIT</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">GFR 173(i) Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Accessibility</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-sm font-label-sm" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Simple Interaction Logic for the prompt requirements
+        function triggerPayment(buttonElement, amount) {
+            // 1. Update Button State
+            buttonElement.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span> Completed`;
+            buttonElement.classList.remove('bg-primary', 'hover:bg-primary-container', 'text-on-primary');
+            buttonElement.classList.add('bg-success', 'text-on-primary', 'cursor-default');
+            buttonElement.disabled = true;
+
+            // Update icon above
+            const iconContainer = buttonElement.parentElement.previousElementSibling;
+            iconContainer.classList.remove('bg-surface-container-lowest', 'border-2', 'border-primary', 'text-primary');
+            iconContainer.classList.add('bg-primary', 'text-on-primary', 'border-4', 'border-surface-container-lowest', 'shadow-md');
+            iconContainer.innerHTML = '<span class="material-symbols-outlined">check</span>';
+            
+            // Update connector line before it (assuming previous sibling is connector)
+            const connector = iconContainer.previousElementSibling;
+            if(connector) connector.classList.add('active');
+
+            // 2. Show Toast
+            showToast(`Milestone completed! ${amount} payment released via GFR gateway.`, 'success');
+
+            // 3. Update Financial Panel (Simulated values for demonstration)
+            setTimeout(() => {
+                const progressBar = document.getElementById('progress-bar');
+                const disbursedLabel = document.getElementById('disbursed-label');
+                const remainingLabel = document.getElementById('remaining-label');
+                const transactionList = document.getElementById('transaction-list');
+
+                // Update visual progress
+                progressBar.style.width = '54.1%'; // Roughly 6.5L of 12L
+
+                // Update text
+                disbursedLabel.innerText = '₹6,50,000 Disbursed';
+                remainingLabel.innerText = '₹5,50,000 Remaining';
+
+                // Add to list
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center text-label-sm font-label-sm border-b border-outline-variant pb-xs toast-enter';
+                li.innerHTML = `<span class="text-on-surface-variant">First Beta Release</span><span class="text-success font-bold">${amount}</span>`;
+                transactionList.appendChild(li);
+            }, 500);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgClass = type === 'success' ? 'bg-success-container text-on-success-container border-success' : 'bg-primary-container text-on-primary-container border-primary';
+            const icon = type === 'success' ? 'task_alt' : 'info';
+
+            toast.className = `flex items-center gap-md px-md py-sm rounded-lg shadow-lg border-l-4 ${bgClass} toast-enter max-w-sm`;
+            toast.innerHTML = `
+                <span class="material-symbols-outlined" data-weight="fill">${icon}</span>
+                <span class="text-label-md font-label-md">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('toast-enter');
+                toast.classList.add('toast-exit');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+    </script>
+</body></html>
