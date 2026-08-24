@@ -68,3 +68,9 @@ export const RUBRIC_CRITERIA = [
 
 export const GFR_RULE = "GFR Rule 173(i)";
 export const WAIVER_TEXT = "DPIIT-recognized startups are exempt from minimum turnover and prior experience requirements under GFR Rule 173(i). EMD is also waived.";
+
+export { SEED_MILESTONE_CONTRACTS } from '../../data/src/milestoneContracts.js'
+export { EVALUATION_CRITERIA_PANEL, SEED_EVALUATION_PANELS, SEED_EVALUATORS_POOL } from '../../data/src/evaluationPanels.js'
+export { SEED_PILOT_TRACKING } from '../../data/src/pilotSandboxData.js'
+export { IP_CLAUSE_TEMPLATES, SEED_IP_SELECTIONS } from '../../data/src/ipClauseTemplates.js'
+export { SEED_NOTIFICATIONS } from '../../data/src/notifications.js'

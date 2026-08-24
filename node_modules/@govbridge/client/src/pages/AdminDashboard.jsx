@@ -24,6 +24,7 @@ export default function AdminDashboard({ user, onLogout }) {
             <h1 className="text-headline-lg font-headline-lg text-primary">Platform Admin Console</h1>
             <p className="text-body-md font-body-md text-on-surface-variant">System-wide health · Maharashtra State Innovation Society</p>
           </div>
+
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-gutter mb-lg">
             {PLATFORM_STATS.map(s => (
               <div key={s.label} className="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm flex flex-col gap-sm">
@@ -35,6 +36,33 @@ export default function AdminDashboard({ user, onLogout }) {
                 <p className="text-label-sm font-label-sm text-on-surface-variant">{s.sub}</p>
               </div>
             ))}
+          </div>
+
+          {/* Tier 2 Admin Quick Links */}
+          <div className="mb-lg">
+            <h2 className="text-headline-md font-bold text-primary mb-sm">Governance & Sandbox Oversight</h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-md">
+              <Link to="/evaluation-panel" className="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-colors shadow-sm">
+                <span className="text-[11px] font-bold text-primary">2.2 Panel Oversight</span>
+                <p className="font-bold text-label-md text-on-surface mt-1">Assign Evaluators</p>
+                <p className="text-[11px] text-on-surface-variant">Manage 5-member expert pool</p>
+              </Link>
+              <Link to="/milestones" className="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-colors shadow-sm">
+                <span className="text-[11px] font-bold text-primary">2.1 Disbursements</span>
+                <p className="font-bold text-label-md text-on-surface mt-1">GFR Payment Ledger</p>
+                <p className="text-[11px] text-on-surface-variant">Track escrow disbursements</p>
+              </Link>
+              <Link to="/pilot-sandbox" className="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-colors shadow-sm">
+                <span className="text-[11px] font-bold text-primary">2.3 Telemetry Audit</span>
+                <p className="font-bold text-label-md text-on-surface mt-1">Sandbox KPI Live Log</p>
+                <p className="text-[11px] text-on-surface-variant">Review canal & traffic trials</p>
+              </Link>
+              <Link to="/notifications" className="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant hover:border-primary transition-colors shadow-sm">
+                <span className="text-[11px] font-bold text-primary">2.5 Alert Center</span>
+                <p className="font-bold text-label-md text-on-surface mt-1">Automated SLA Triggers</p>
+                <p className="text-[11px] text-on-surface-variant">Inspect simulated email logs</p>
+              </Link>
+            </div>
           </div>
 
           {/* SLA Alerts */}
@@ -62,8 +90,8 @@ export default function AdminDashboard({ user, onLogout }) {
             <Link to="/discover" className="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:opacity-90 flex items-center gap-sm shadow-sm">
               <span className="material-symbols-outlined text-[18px]">search</span> Startup Registry
             </Link>
-            <Link to="/evaluate" className="border border-primary text-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary-fixed flex items-center gap-sm transition-colors">
-              <span className="material-symbols-outlined text-[18px]">rate_review</span> Evaluation Queue
+            <Link to="/evaluation-panel" className="border border-primary text-primary font-label-md text-label-md px-md py-sm rounded-lg hover:bg-primary-fixed flex items-center gap-sm transition-colors">
+              <span className="material-symbols-outlined text-[18px]">rate_review</span> Evaluation Queue (2.2)
             </Link>
             <Link to="/tracker" className="border border-outline text-on-surface font-label-md text-label-md px-md py-sm rounded-lg hover:bg-surface-container flex items-center gap-sm transition-colors">
               <span className="material-symbols-outlined text-[18px]">analytics</span> Public Tracker
